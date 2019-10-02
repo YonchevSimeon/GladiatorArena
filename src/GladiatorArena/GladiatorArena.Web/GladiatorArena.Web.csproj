@@ -13,7 +13,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\GladiatorArena.Data\GladiatorArena.Data.csproj" />
+    <ProjectReference Include="..\GladiatorArena.Services\GladiatorArena.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿namespace GladiatorArena.Web
 {
+    using AutoMapper;
     using Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,9 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Models;
+    using Infrastructure;
+    using Infrastructure.Extensions;
+    using Infrastructure.Mapping;
 
     public class Startup
     {
@@ -47,10 +51,17 @@
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddEntityFrameworkStores<GladiatorArenaDbContext>();
 
-            services.AddAntiforgery();
+            services
+                .AddAutoMapper(cfg => cfg.AddProfile<GladiatorArenaProfile>());
+            
+            services
+                .AddAntiforgery();
 
-            services.AddRouting(routing =>
-                routing.LowercaseUrls = true);
+            services
+                .AddDomainServices();
+
+            services
+                .AddRouting(routing => routing.LowercaseUrls = true);
 
             services
                 .AddMvc(options =>
@@ -63,6 +74,8 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+                app.UseExceptionHandler("/Home/Error");
             }
             else
             {
@@ -74,6 +87,8 @@
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
+            app.UseMiddleware(typeof(SeedRolesMiddleware));
 
             app.UseMvc(routes =>
             {

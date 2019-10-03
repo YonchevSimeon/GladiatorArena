@@ -10,5 +10,20 @@
             public const int PasswordMinLength = 4;
             public const int PasswordMaxLength = 12;
         }
+
+        public static class Hero
+        {
+            #region extras
+            public const double StrengthDivider = 10.0;
+            #endregion
+
+            public const int StrengthDefaultValue = 5;
+
+            public const int MinDamageDefaultValue = 0;
+
+            public const int MaxDamageDefaultValue = 2;
+
+            public const int ArmourDefaultValue = 0;
+        }
     }
 }

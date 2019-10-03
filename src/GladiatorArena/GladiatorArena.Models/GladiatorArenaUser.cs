@@ -7,5 +7,8 @@
         public GladiatorArenaUser()
         {
         }
+
+        public string HeroId { get; set; }
+        public virtual Hero Hero { get; set; }
     }
 }

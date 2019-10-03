@@ -4,14 +4,16 @@ using GladiatorArena.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GladiatorArena.Data.Migrations
 {
     [DbContext(typeof(GladiatorArenaDbContext))]
-    partial class GladiatorArenaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191003104549_BasicHeroAdded")]
+    partial class BasicHeroAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
